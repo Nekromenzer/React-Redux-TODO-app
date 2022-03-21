@@ -10,9 +10,21 @@ const TodoInput = () => {
     dispatch(addTodo({ id: Math.random(), name: task }))
     setTask('')
   }
+
+  const handleKeyDown = e => {
+    var code = e.keyCode || e.key
+    if (code === 'Enter' || code === 13) {
+      handleSubmit()
+    }
+  }
   return (
     <div>
-      <input type='text' value={task} onChange={e => setTask(e.target.value)} />
+      <input
+        type='text'
+        value={task}
+        onChange={e => setTask(e.target.value)}
+        onKeyPress={e => handleKeyDown(e)}
+      />
       <button onClick={handleSubmit}>Add Task</button>
     </div>
   )
